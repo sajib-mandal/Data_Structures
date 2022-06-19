@@ -47,6 +47,65 @@ class RedBlackTree():
         return self.search_tree_helper(node.right, key)
 
 
+    def fix_delete(self, x):
+        while x != self.root and x.color == 0:
+            if x == x.parent.left:
+                s = x.parent.right
+                if s.color == 1:
+                    s.color = 0
+                    x.parent.color = 1
+                    self.left_rotate(x.parent)
+                    s = x.parent.right
+
+            # case 3.2
+                if s.left.color == 0 and s.right.color == 0:
+                    s.color = 1
+                    x = x.parent
+
+            # case 3.3
+                else:
+                    if s.right.color == 0:
+                        s.left.color = 0
+                        s.color = 1
+                        self.left_rotate(s)
+                        s = x.parent.right
+
+                # case 3.4
+                    s.color = x.parent.color
+                    x.parent.color = 0
+                    s.right.color = 0
+                    self.left_rotate(x.parent)
+                    x = self.root
+
+            else:
+                s = x.parent.left
+                if s.color == 1:
+                    s.color = 0
+                    x.parent.color = 1
+                    self.right_rotate(x.parent)
+                    s = x.parent.left
+
+                if s.left.color == 0 and s.right.color == 0:
+                    s.color = 1
+                    x = x.parent
+
+                else:
+                    if self.left.color == 0:
+                        s.right.color = 0
+                        s.color = 1
+                        self.left_rotate(s)
+                        s = s.parent.left
+
+                    s.color = x.parent.color
+                    x.parent.color = 0
+                    s.left.color = 0
+                    self.right_rotate(x.parent)
+                    x = self.root
+        x.color = 0
+
+
+
+
 
     def fix_insert(self, k):
         while k.parent.color == 1:
