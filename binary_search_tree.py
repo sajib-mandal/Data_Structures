@@ -76,6 +76,12 @@ class Node:
                 temp = self.leftChild
                 self = None
                 return temp
+            
+            temp = self.minValueNode(self.rightChild)
+            self.data = temp.data
+            self.rightChild = self.rightChild.delete(temp.data, root)
+
+        return self
 
 
 
