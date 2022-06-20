@@ -59,6 +59,7 @@ class Node:
             self.rightChild = self.rightChild.delete(data, root)
 
         else:
+            # deleting node with one child
             if self.leftChild is None:
                 if self == root:
                     temp = self.minValueNode(self.rightChild)
@@ -77,6 +78,8 @@ class Node:
                 self = None
                 return temp
             
+            # deleting node with one child
+            # first get the inorder successor
             temp = self.minValueNode(self.rightChild)
             self.data = temp.data
             self.rightChild = self.rightChild.delete(temp.data, root)
