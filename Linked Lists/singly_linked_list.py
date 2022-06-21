@@ -87,12 +87,12 @@ class LinkedList:
 
         # searching an item in the list
 
-        def search(self, node, data):
-            if node == None:
-                return False
-            if node.data == data:
-                return True
-            return self.search(node.getNext(), data)
+    def search(self, node, data):
+        if node == None:
+            return False
+        if node.data == data:
+            return True
+        return self.search(node.getNext(), data)
 
 if __name__ == '__main__':
     list = LinkedList()
