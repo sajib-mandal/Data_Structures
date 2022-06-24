@@ -1,5 +1,5 @@
 import sys
-
+# create a node
 class Node():
     def __init__(self, data):
         self.data = data
