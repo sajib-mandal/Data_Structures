@@ -119,3 +119,55 @@ a.right = b
 print(right_side_view(a))  # [1, 3]
 
 print(right_side_view(None))  # []
+
+
+# recursive depth first 
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def right_side_view(root):
+    if root is None:
+        return []
+
+    right_values = right_side_view(root.right)
+
+    #return [root.val] + right_values
+    return [root.val, *right_values]    # both are same
+
+
+a = Node(1)
+b = Node(2)
+c = Node(3)
+d = Node(5)
+e = Node(10)
+f = Node(4)
+
+a.left = b
+a.right = c
+b.right = d
+c.left = e
+c.right = f
+
+#       1
+#      /  \
+#     2    3
+#      \    \
+#       5    4
+
+print(right_side_view(a))  # [1, 3, 4]
+
+a = Node(1)
+b = Node(3)
+a.right = b
+
+#      1
+#       \
+#        3
+print(right_side_view(a))  # [1, 3]
+
+print(right_side_view(None))  # []
