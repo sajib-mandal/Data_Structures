@@ -42,3 +42,37 @@ b.right = e
 
 print(inorder(a))
 print(inorder(None))
+
+
+
+# recursive
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def inorder(root):
+    if root is None:
+        return []
+    left_side = inorder(root.left)
+    right_side = inorder(root.right)
+    # return [*left_side, root.val, *right_side]
+    return left_side + [root.val] + right_side
+
+
+a = Node(1)
+b = Node(2)
+c = Node(5)
+d = Node(3)
+e = Node(4)
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+
+print(inorder(a))
+print(inorder(None))
