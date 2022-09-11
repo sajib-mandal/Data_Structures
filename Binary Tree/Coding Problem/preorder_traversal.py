@@ -36,3 +36,52 @@ e.left = g
 e.right = h
 
 print(preorder(a))
+
+
+
+# iterative
+
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def preorder(root):
+    if root is None:
+        return []
+
+    values = []
+    stack = [root]
+
+    while stack:
+        curr = stack.pop()
+        values.append(curr.val)
+
+        if curr.right:
+            stack.append(curr.right)
+        if curr.left:
+            stack.append(curr.left)
+
+    return values
+
+
+a = Node(1)
+b = Node(2)
+c = Node(3)
+d = Node(4)
+e = Node(5)
+f = Node(6)
+g = Node(7)
+h = Node(8)
+
+a.left = b
+a.right = c
+b.left = d
+c.left = e
+c.right = f
+e.left = g
+e.right = h
+
+print(preorder(a))
