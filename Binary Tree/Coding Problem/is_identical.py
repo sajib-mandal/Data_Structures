@@ -1,5 +1,3 @@
-# recursive
-
 class Node:
     def __init__(self, val):
         self.val = val
@@ -11,9 +9,13 @@ def is_identical(x, y):
     if x is None and y is None:
         return True
 
-    return (x is not None and y is not None) and (x.val == y.val) and is_identical(x.left, y.left) and is_identical(
-        x.right, y.right)
+    if x is None or y is None:      # if x is None or y is None or x.val != y.val:
+        return False                           # return False
 
+    if x.val != y.val:
+        return False
+
+    return is_identical(x.left, y.left) and is_identical(x.right, y.right)
 
 a = Node(1)
 b = Node(2)
@@ -30,7 +32,7 @@ b.right = e
 c.left = f
 c.right = g
 
-a1 = Node(10)
+a1 = Node(1)
 b1 = Node(2)
 c1 = Node(3)
 d1 = Node(4)
